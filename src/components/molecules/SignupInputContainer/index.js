@@ -31,8 +31,8 @@ const SignupInputContainer = ({ type, role }) => {
       if (response) {
         const role = getRole();
         if (response.data.status) {
-          toast.success("Check your mail for verification link");
-          history.push(`/${role}/verifyEmail`);
+          toast.success("Signup successful! Redirecting to dashboard...");
+          history.push(`/${role}/dashboard`); // ✅ Redirect to dashboard
         } else if (response.data.message === "User Already Exists") {
           toast.error("User Already Exists");
         } else {
