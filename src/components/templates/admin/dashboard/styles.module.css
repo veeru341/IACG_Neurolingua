@@ -1,0 +1,112 @@
+.mainSection {
+    padding: 1rem;
+    position: relative;
+    /* background-color: pink; */
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    /* background-color: pink; */
+}
+
+.firstRowTab {
+    background-color: rgba(158, 205, 230, 0.15);;
+    padding: 10px 20px;
+    border-radius: 30px;
+    outline: 2px solid #000;
+    width: 15%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #000;
+}
+
+.firstRowTabActive {
+    background-color: #9ECDE6;
+    padding: 10px 20px;
+    border-radius: 30px;
+    width: 15%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.secondRowHeadings {
+    background-color: #9ECDE6;
+    text-align: center;
+    border-radius: 20px 20px 0 0;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 20px;
+}
+
+.secondRowBody {
+    border: 1px solid grey;
+    border-radius: 0 0 20px 20px;
+    /* height: 70px; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 0;
+}
+
+.fee {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.graphName {
+    background-color: rgba(158, 205, 230, 0.15);
+    padding: 10px 20px;
+    border-radius: 30px;
+    outline: 2px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #303C43;
+    text-align: center;
+}
+
+.graphNameActive {
+    background-color: #9ECDE6;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    text-align: center;
+}
+
+.teacherCardIcons {
+    margin-right: 20px;
+}
+
+@media screen and (min-width: 992px) {
+    .mainSection {
+        padding: 2em 4rem;
+        padding-left: 230px;
+        width: 80%;
+    }
+
+    .fee {
+        width: 32%;
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .graphName, .graphNameActive {
+        font-size: 15px;
+        padding: 0px 0px;
+        border-radius: 20px;
+        width: 30%;
+    }
+}
