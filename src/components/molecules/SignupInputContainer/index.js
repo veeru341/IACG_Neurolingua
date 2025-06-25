@@ -7,7 +7,6 @@ import classes from "./styles.module.css";
 import { useDispatch } from "react-redux";
 import { signup } from "../../../store/actions/main/authAction";
 import { useHistory } from "react-router";
-import { getRole } from "../../../utils/util";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -28,25 +27,32 @@ const SignupInputContainer = ({ type, role }) => {
 
     try {
       const response = await dispatch(signup(data));
+
       if (response) {
-        const role = getRole();
         if (response.data.status) {
-          toast.success("Signup successful! Redirecting to dashboard...");
-          history.push(`/${role}/dashboard`); // ✅ Redirect to dashboard
+          toast.success("Account created successfully. Please log in.");
+
+          // ✅ Stop loader
+          if (loader) loader.style.display = "none";
+
+          // ✅ Redirect to login
+          history.push("/login");
+          return;
         } else if (response.data.message === "User Already Exists") {
-          toast.error("User Already Exists");
+          toast.error("User already exists.");
         } else {
-          toast.error(response.data.message || "Signup failed");
+          toast.error(response.data.message || "Signup failed.");
         }
       } else {
-        toast.error("Server Error, Please try again later");
+        toast.error("Server error. Please try again later.");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong");
-    } finally {
-      if (loader) loader.style.display = "none";
+      toast.error("Something went wrong. Try again later.");
     }
+
+    // ✅ Always stop loader in the end
+    if (loader) loader.style.display = "none";
   };
 
   const formik = useFormik({
@@ -65,7 +71,9 @@ const SignupInputContainer = ({ type, role }) => {
     <form onSubmit={formik.handleSubmit} className={classes.inputContainer} method="post">
       {type && (
         <div style={{ textAlign: "left", marginBottom: "20px" }}>
-          <label htmlFor="fullName" style={{ fontSize: "16px", fontWeight: "100" }}>Full Name</label>
+          <label htmlFor="fullName" style={{ fontSize: "16px", fontWeight: "100" }}>
+            Full Name
+          </label>
           <Input
             onBlur={formik.handleBlur}
             change={formik.handleChange}
@@ -84,7 +92,9 @@ const SignupInputContainer = ({ type, role }) => {
       )}
 
       <div style={{ textAlign: "left", marginBottom: "20px" }}>
-        <label htmlFor="email" style={{ fontSize: "16px", fontWeight: "100" }}>Email</label>
+        <label htmlFor="email" style={{ fontSize: "16px", fontWeight: "100" }}>
+          Email
+        </label>
         <Input
           onBlur={formik.handleBlur}
           change={formik.handleChange}
@@ -101,7 +111,9 @@ const SignupInputContainer = ({ type, role }) => {
       )}
 
       <div style={{ textAlign: "left", marginBottom: "20px" }}>
-        <label htmlFor="password" style={{ fontSize: "16px", fontWeight: "100" }}>Password</label>
+        <label htmlFor="password" style={{ fontSize: "16px", fontWeight: "100" }}>
+          Password
+        </label>
         <Input
           onBlur={formik.handleBlur}
           change={formik.handleChange}
